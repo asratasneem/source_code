@@ -1,4 +1,3 @@
-
 # **Streamlining RNA-seq Data Analysis Using Clustering Pipelines**
 
 This repository provides code, results, and documentation for a comparative study on clustering pipelines applied to bulk RNA-seq data. By integrating dimensionality reduction techniques with clustering algorithms, the study offers insights into transcriptomic patterns in COVID-19 patients and healthy controls.
@@ -27,24 +26,6 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - **Relevance:** Investigates the transcriptomic landscape of SARS-CoV-2 infection, recovery, and host immune response.
 
 ---
-
-## **Pipelines**
-
-### **Pipeline 1: PCA + K-means Clustering**
-- **Strengths:** Computationally efficient, captures global variance trends.
-- **Weaknesses:** Limited ability to separate biologically meaningful clusters.
-
-### **Pipeline 2: PCA + Hierarchical Clustering**
-- **Strengths:** Identifies nested relationships; moderate silhouette score.
-- **Weaknesses:** Computationally slower than Pipeline 1.
-
-### **Pipeline 3: t-SNE + K-means Clustering**
-- **Strengths:** Excellent visualization of non-linear relationships; moderate ARI.
-- **Weaknesses:** Memory-intensive and slower than PCA-based methods.
-
-### **Pipeline 4: t-SNE + Hierarchical Clustering**
-- **Best Pipeline:** Combines the strengths of t-SNE for non-linear data relationships and hierarchical clustering for nested insights.
-- **Performance:** Highest ARI (0.60) and a good silhouette score (0.42).
 
 ---
 
@@ -75,12 +56,40 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 
 ## **Results**
 
-| **Pipeline**            | **ARI** | **Silhouette Score** | **Runtime (s)** | **Memory Usage** |
-|--------------------------|---------|----------------------|-----------------|------------------|
-| PCA + K-means            | 0.32    | 0.10                 | 5.56            | 103.78 MB        |
-| PCA + Hierarchical       | 0.24    | 0.47                 | 30.14           | 104.62 MB        |
-| t-SNE + K-means          | 0.51    | 0.41                 | 13.00           | ~1.5 GB          |
-| **t-SNE + Hierarchical** | **0.60**| **0.42**             | **12.80**       | **~1.6 GB**      |
+### **Clustering Pipelines**
+We implemented and evaluated four clustering pipelines combining dimensionality reduction with clustering algorithms:
+
+#### **Pipeline 1: PCA + K-means Clustering**
+- **Dimensionality Reduction:** Principal Component Analysis (PCA) captures the largest variance in the data.
+- **Clustering Method:** K-means clustering groups data into clusters by minimizing within-cluster variance.
+- **Key Findings:**
+  - Computationally efficient with a runtime of **5.56 seconds** and memory usage of **103.78 MB**.
+  - Moderate performance with an **ARI of 0.32** and a low silhouette score of **0.10**.
+  - Revealed basic trends in the data but struggled with overlapping clusters.
+
+#### **Pipeline 2: PCA + Hierarchical Clustering**
+- **Dimensionality Reduction:** PCA simplifies the high-dimensional gene expression data.
+- **Clustering Method:** Hierarchical Clustering constructs a dendrogram to identify nested relationships in the data.
+- **Key Findings:**
+  - Better separation of clusters than K-means alone, with a silhouette score of **0.47**.
+  - Computationally more intensive, with a runtime of **30.14 seconds** and memory usage of **104.62 MB**.
+  - Highlighted nested relationships, but lacked the resolution needed for biological insights.
+
+#### **Pipeline 3: t-SNE + K-means Clustering**
+- **Dimensionality Reduction:** t-SNE captures non-linear patterns in the data, preserving local and global relationships.
+- **Clustering Method:** K-means clustering applied to the t-SNE-transformed data.
+- **Key Findings:**
+  - Better performance in separating clusters, with an **ARI of 0.51** and silhouette score of **0.41**.
+  - Runtime of approximately **13 seconds** but memory-intensive, requiring **~1.5 GB**.
+  - Enhanced cluster visualization but showed moderate overlap among conditions.
+
+#### **Pipeline 4: t-SNE + Hierarchical Clustering**
+- **Dimensionality Reduction:** t-SNE reveals complex, non-linear relationships.
+- **Clustering Method:** Hierarchical Clustering constructs a dendrogram to further refine clusters.
+- **Key Findings:**
+  - The best-performing pipeline with an **ARI of 0.60** and silhouette score of **0.42**.
+  - Runtime of **12.80 seconds**, with memory usage of **~1.6 GB**.
+  - Provided biologically meaningful clusters that were used for downstream analyses.
 
 ### **Biological Insights**
 - **DEGs Identified:** 14,667 genes (3,873 upregulated, 10,794 downregulated).
@@ -111,17 +120,6 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - Python 3.8+
 - Libraries: `pandas`, `numpy`, `scikit-learn`, `matplotlib`, `seaborn`, `umap-learn`, `scipy`.
 
-### **Instructions**
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/username/repo_name.git
-   ```
-2. Place the following files in the working directory:
-   - `gene_counts.txt`
-   - `SraRunTable.csv`
-3. Run the clustering pipeline:
-   ```bash
-   python Clustering_Pipelines.py
    ```
 4. Outputs:
    - Visualizations: PCA, t-SNE, UMAP, dendrograms.
@@ -137,3 +135,6 @@ Asra Tasneem Shaik, Muni Manasa Vema, Mahima Mahabaleshwar Siddheshwar, Saranya 
 **Course:** Computational Methods for Biomedical Informatics (B536).  
 
 ---
+
+
+
