@@ -61,14 +61,16 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 ### **Pipeline 1: PCA + K-means Clustering**
 - **Description:** 
   - Principal Component Analysis (PCA) was used to reduce dimensionality by capturing global variance trends in the dataset.
-  - K-means clustering grouped samples into clusters by minimizing within-cluster variance.
+  - K-means clustering grouped samples into 3 clusters by minimizing within-cluster variance.
+  - Applied PCA to reduce high-dimensional data to 2 components while retaining maximum variance.
 - **Implementation Highlights:**
   - Optimal cluster count determined using the elbow method.
   - PCA explained **21.2% of the variance in PC1** and **7.9% in PC2**.
 - **Evaluation Results:**
-  - **Runtime:** 5.56 seconds
+  - **Runtime:** 103.07 seconds
   - **ARI:** 0.32
   - **Silhouette Score:** 0.10
+  - **Memory usage:** 218.43 MB
 - **Insights:**
   - Showed basic separation of healthy and COVID-19 states but limited biological interpretability.
 
@@ -85,6 +87,7 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
   - **Runtime:** 30.14 seconds
   - **ARI:** 0.24
   - **Silhouette Score:** 0.47
+  - **Memory usage:** 104.62 MB
 - **Insights:**
   - Highlighted nested structure but suffered from overlapping clusters in biological contexts.
 
@@ -94,6 +97,7 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - **Description:**
   - t-distributed Stochastic Neighbor Embedding (t-SNE) preserved local and global structures, revealing non-linear relationships in the data.
   - K-means clustering applied to the t-SNE-transformed data.
+  - Performed K-means clustering with 3 clusters (k=3) on t-SNE results
 - **Implementation Highlights:**
   - Parameters: Perplexity = 30, Iterations = 1000, Random Seed = 42.
   - Clusters visualized in 2D scatterplots.
@@ -101,6 +105,7 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
   - **Runtime:** 13 seconds
   - **ARI:** 0.51
   - **Silhouette Score:** 0.41
+  - **Memory usage:** 102.81 MB
 - **Insights:**
   - Provided a more accurate depiction of cluster separations but required more computational resources.
 
@@ -117,6 +122,7 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
   - **Runtime:** 12.8 seconds
   - **ARI:** 0.60
   - **Silhouette Score:** 0.42
+  - **Memory usage:** 103.62 MB
 - **Insights:**
   - The best-performing pipeline with meaningful cluster separations, used for downstream analysis.
 
@@ -161,18 +167,6 @@ Asra Tasneem Shaik, Muni Manasa Vema, Mahima Mahabaleshwar Siddheshwar, Saranya 
 **Course:** Computational Methods for Biomedical Informatics (B536).  
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
