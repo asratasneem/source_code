@@ -56,58 +56,84 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 
 ## **Results**
 
-### **Clustering Pipelines**
-We implemented and evaluated four clustering pipelines combining dimensionality reduction with clustering algorithms:
+## **Clustering Pipelines**
 
-#### **Pipeline 1: PCA + K-means Clustering**
-- **Dimensionality Reduction:** Principal Component Analysis (PCA) captures the largest variance in the data.
-- **Clustering Method:** K-means clustering groups data into clusters by minimizing within-cluster variance.
-- **Key Findings:**
-  - Computationally efficient with a runtime of **5.56 seconds** and memory usage of **103.78 MB**.
-  - Moderate performance with an **ARI of 0.32** and a low silhouette score of **0.10**.
-  - Revealed basic trends in the data but struggled with overlapping clusters.
-
-#### **Pipeline 2: PCA + Hierarchical Clustering**
-- **Dimensionality Reduction:** PCA simplifies the high-dimensional gene expression data.
-- **Clustering Method:** Hierarchical Clustering constructs a dendrogram to identify nested relationships in the data.
-- **Key Findings:**
-  - Better separation of clusters than K-means alone, with a silhouette score of **0.47**.
-  - Computationally more intensive, with a runtime of **30.14 seconds** and memory usage of **104.62 MB**.
-  - Highlighted nested relationships, but lacked the resolution needed for biological insights.
-
-#### **Pipeline 3: t-SNE + K-means Clustering**
-- **Dimensionality Reduction:** t-SNE captures non-linear patterns in the data, preserving local and global relationships.
-- **Clustering Method:** K-means clustering applied to the t-SNE-transformed data.
-- **Key Findings:**
-  - Better performance in separating clusters, with an **ARI of 0.51** and silhouette score of **0.41**.
-  - Runtime of approximately **13 seconds** but memory-intensive, requiring **~1.5 GB**.
-  - Enhanced cluster visualization but showed moderate overlap among conditions.
-
-#### **Pipeline 4: t-SNE + Hierarchical Clustering**
-- **Dimensionality Reduction:** t-SNE reveals complex, non-linear relationships.
-- **Clustering Method:** Hierarchical Clustering constructs a dendrogram to further refine clusters.
-- **Key Findings:**
-  - The best-performing pipeline with an **ARI of 0.60** and silhouette score of **0.42**.
-  - Runtime of **12.80 seconds**, with memory usage of **~1.6 GB**.
-  - Provided biologically meaningful clusters that were used for downstream analyses.
-
-### **Biological Insights**
-- **DEGs Identified:** 14,667 genes (3,873 upregulated, 10,794 downregulated).
-- **Top Pathways:** RNA splicing, ribosome biogenesis, PD-L1 expression.
-- **Key Genes:** CYP1B1, HERC3, RNF216.
+### **Pipeline 1: PCA + K-means Clustering**
+- **Description:** 
+  - Principal Component Analysis (PCA) was used to reduce dimensionality by capturing global variance trends in the dataset.
+  - K-means clustering grouped samples into clusters by minimizing within-cluster variance.
+- **Implementation Highlights:**
+  - Optimal cluster count determined using the elbow method.
+  - PCA explained **21.2% of the variance in PC1** and **7.9% in PC2**.
+- **Evaluation Results:**
+  - **Runtime:** 5.56 seconds
+  - **ARI:** 0.32
+  - **Silhouette Score:** 0.10
+- **Insights:**
+  - Showed basic separation of healthy and COVID-19 states but limited biological interpretability.
 
 ---
 
-## **Repository Structure**
+### **Pipeline 2: PCA + Hierarchical Clustering**
+- **Description:**
+  - PCA was applied to reduce dimensionality.
+  - Hierarchical Clustering used Ward’s method to form clusters, visualized with a dendrogram.
+- **Implementation Highlights:**
+  - Produced nested relationships among clusters.
+  - Optimal cluster count (3) chosen from the dendrogram.
+- **Evaluation Results:**
+  - **Runtime:** 30.14 seconds
+  - **ARI:** 0.24
+  - **Silhouette Score:** 0.47
+- **Insights:**
+  - Highlighted nested structure but suffered from overlapping clusters in biological contexts.
 
-- **`Clustering_Pipelines.py`**  
-   Python script implementing all four pipelines with visualization and metrics.
+---
 
-- **`gene_counts.txt`**  
-   Raw gene count matrix used for analysis.
+### **Pipeline 3: t-SNE + K-means Clustering**
+- **Description:**
+  - t-distributed Stochastic Neighbor Embedding (t-SNE) preserved local and global structures, revealing non-linear relationships in the data.
+  - K-means clustering applied to the t-SNE-transformed data.
+- **Implementation Highlights:**
+  - Parameters: Perplexity = 30, Iterations = 1000, Random Seed = 42.
+  - Clusters visualized in 2D scatterplots.
+- **Evaluation Results:**
+  - **Runtime:** 13 seconds
+  - **ARI:** 0.51
+  - **Silhouette Score:** 0.41
+- **Insights:**
+  - Provided a more accurate depiction of cluster separations but required more computational resources.
 
-- **`normalized_data.csv`**  
-   Preprocessed and normalized data.
+---
+
+### **Pipeline 4: t-SNE + Hierarchical Clustering**
+- **Description:**
+  - t-SNE reduced dimensionality, emphasizing local data relationships.
+  - Hierarchical Clustering formed nested clusters from t-SNE results, visualized using a dendrogram.
+- **Implementation Highlights:**
+  - Parameters: Same t-SNE settings as Pipeline 3.
+  - Hierarchical clustering extracted 3 optimal clusters.
+- **Evaluation Results:**
+  - **Runtime:** 12.8 seconds
+  - **ARI:** 0.60
+  - **Silhouette Score:** 0.42
+- **Insights:**
+  - The best-performing pipeline with meaningful cluster separations, used for downstream analysis.
+
+---
+
+## **Key Findings**
+
+- **Best Performing Pipeline:** t-SNE + Hierarchical Clustering
+  - Achieved the highest clustering agreement (ARI: 0.60) and revealed biologically meaningful clusters.
+  - Enabled downstream analysis for identifying DEGs and enriched pathways.
+
+- **Biological Insights:**
+  - Top GO Terms: RNA splicing, ribosome biogenesis.
+  - Significant Pathways: PD-L1 expression, ubiquitin-mediated proteolysis.
+  - Highlighted key genes: CYP1B1, HERC3, RNF216.
+
+---
 
 - **Figures**  
    Includes PCA, t-SNE, UMAP visualizations, dendrograms, and DEG heatmaps.
@@ -135,6 +161,27 @@ Asra Tasneem Shaik, Muni Manasa Vema, Mahima Mahabaleshwar Siddheshwar, Saranya 
 **Course:** Computational Methods for Biomedical Informatics (B536).  
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
