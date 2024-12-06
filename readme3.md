@@ -36,11 +36,24 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - Alignment to the human genome (`hg38`) with HISAT2.
 - Gene count matrix generation using featureCounts.
 
-### **2. Data Normalization**
-- Log transformation of gene expression data.
-- Filtering low-expression genes (counts > 5).
-- Standardization of data for clustering.
 
+### **2. Data Normalization**
+### Input Files:
+1. *Gene Expression Matrix* (gene_counts.txt):  
+   - Contains raw gene counts with metadata (e.g., gene ID, chromosome, start/end positions).  
+2. *Metadata File* (SraRunTable.csv):  
+   - Includes biological metadata such as sample conditions, severity, and gender.
+
+### Steps:
+1. *Filter Genes*:  
+   - Genes with total counts > 5 across samples were retained.
+2. *Log Transformation*:  
+   - Log-transformed data using log2(x + 1) for normalization.
+3. *Scaling*:  
+   - Standardized samples (rows) using StandardScaler to zero-mean and unit variance.
+4. *Output*:  
+   - The preprocessed dataset was saved as normalized_data.csv for downstream analysis.
+  
 ### **3. Clustering and Evaluation**
 - Dimensionality reduction (PCA, t-SNE).
 - Clustering (K-means, Hierarchical Clustering).
@@ -167,15 +180,3 @@ Asra Tasneem Shaik, Muni Manasa Vema, Mahima Mahabaleshwar Siddheshwar, Saranya 
 **Course:** Computational Methods for Biomedical Informatics (B536).  
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-
