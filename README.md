@@ -147,10 +147,28 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
   - Achieved the highest clustering agreement (ARI: 0.60) and revealed biologically meaningful clusters.
   - Enabled downstream analysis for identifying DEGs and enriched pathways.
 
-- **Biological Insights:**
-  - Top GO Terms: RNA splicing, ribosome biogenesis.
-  - Significant Pathways: PD-L1 expression, ubiquitin-mediated proteolysis.
-  - Highlighted key genes: CYP1B1, HERC3, RNF216.
+## **Biological Insights**
+
+### **Differential Expression Analysis (DEA)**
+- Identified **14,667 significant DEGs**, including:
+  - **3,873 upregulated** genes.
+  - **10,794 downregulated** genes.
+- Notable genes: CYP1B1, RNF216, HERC3 (upregulated), ZNF573, KIAA1279, NEMP1 (downregulated).
+
+### **Gene Ontology (GO) Enrichment**
+- Top biological processes:
+  - RNA splicing via the spliceosome (most enriched, -log10 p-value > 12).
+  - mRNA processing and ribosome biogenesis.
+
+### **KEGG Pathway Enrichment**
+- Significant pathways:
+  - PD-L1 expression and PD-1 checkpoint pathway.
+  - Ubiquitin-mediated proteolysis.
+  - Herpes simplex virus 1 infection.
+
+### **Biological Significance**
+- SARS-CoV-2 significantly impacts RNA processing, immune modulation, and protein regulation.
+- Insights suggest therapeutic targets like RNA splicing and immune checkpoint pathways.
 
 ---
 
