@@ -14,7 +14,7 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 
 1. Evaluate clustering pipelines combining dimensionality reduction techniques (PCA, t-SNE) with clustering algorithms (K-means, Hierarchical Clustering).
 2. Identify biologically significant clusters associated with disease states.
-3. Perform differential expression analysis (DEA) and pathway enrichment for actionable insights.
+3. Perform differential expression analysis (DEA) and pathway enrichment.
 
 ---
 
