@@ -39,19 +39,19 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 
 ### **2. Data Normalization**
 ### Input Files:
-1. *Gene Expression Matrix* (gene_counts.txt):  
+1. **Gene Expression Matrix** (gene_counts.txt):  
    - Contains raw gene counts with metadata (e.g., gene ID, chromosome, start/end positions).  
-2. *Metadata File* (SraRunTable.csv):  
+2. **Metadata File** (SraRunTable.csv):  
    - Includes biological metadata such as sample conditions, severity, and gender.
 
 ### Steps:
-1. *Filter Genes*:  
+1. **Filter genes**:  
    - Genes with total counts > 5 across samples were retained.
-2. *Log Transformation*:  
+2. **Log Transformation**:  
    - Log-transformed data using log2(x + 1) for normalization.
-3. *Scaling*:  
+3. **Scaling**:  
    - Standardized samples (rows) using StandardScaler to zero-mean and unit variance.
-4. *Output*:  
+4. **Output**:  
    - The preprocessed dataset was saved as normalized_data.csv for downstream analysis.
   
 ### **3. Clustering and Evaluation**
