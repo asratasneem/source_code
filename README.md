@@ -60,6 +60,8 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - Evaluation metrics:
   - **Adjusted Rand Index (ARI):** Measures agreement with true labels.
   - **Silhouette Score:** Reflects cluster separation.
+  - **Run time**
+  - **Memory usage**
 
 ### **4. Differential Expression Analysis (DEA)**
 - Identify significant DEGs between clusters.
@@ -79,11 +81,6 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - **Implementation Highlights:**
   - Optimal cluster count determined using the elbow method.
   - PCA explained **21.2% of the variance in PC1** and **7.9% in PC2**.
-- **Evaluation Results:**
-  - **Runtime:** 103.07 seconds
-  - **ARI:** 0.32
-  - **Silhouette Score:** 0.10
-  - **Memory usage:** 218.43 MB
 - **Insights:**
   - Showed basic separation of healthy and COVID-19 states but limited biological interpretability.
 
@@ -96,11 +93,6 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - **Implementation Highlights:**
   - Produced nested relationships among clusters.
   - Optimal cluster count (3) chosen from the dendrogram.
-- **Evaluation Results:**
-  - **Runtime:** 30.14 seconds
-  - **ARI:** 0.24
-  - **Silhouette Score:** 0.47
-  - **Memory usage:** 104.62 MB
 - **Insights:**
   - Highlighted nested structure but suffered from overlapping clusters in biological contexts.
 
@@ -114,11 +106,6 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - **Implementation Highlights:**
   - Parameters: Perplexity = 30, Iterations = 1000, Random Seed = 42.
   - Clusters visualized in 2D scatterplots.
-- **Evaluation Results:**
-  - **Runtime:** 13 seconds
-  - **ARI:** 0.51
-  - **Silhouette Score:** 0.41
-  - **Memory usage:** 102.81 MB
 - **Insights:**
   - Provided a more accurate depiction of cluster separations but required more computational resources.
 
@@ -131,13 +118,17 @@ RNA sequencing (RNA-seq) provides transformative insights into transcriptomic ch
 - **Implementation Highlights:**
   - Parameters: Same t-SNE settings as Pipeline 3.
   - Hierarchical clustering extracted 3 optimal clusters.
-- **Evaluation Results:**
-  - **Runtime:** 12.8 seconds
-  - **ARI:** 0.60
-  - **Silhouette Score:** 0.42
-  - **Memory usage:** 103.62 MB
 - **Insights:**
   - The best-performing pipeline with meaningful cluster separations, used for downstream analysis.
+
+---
+
+| **Pipeline**                | **ARI** | **Silhouette Score** | **Runtime (s)** | **Memory Usage** |
+|-----------------------------|---------|----------------------|-----------------|------------------|
+| PCA + K-means               | 0.32    | 0.10                 | 5.56            | 103.78 MB        |
+| PCA + Hierarchical          | 0.24    | 0.47                 | 30.14           | 104.62 MB        |
+| t-SNE + K-means             | 0.51    | 0.41                 | 13.00           | 102.81 GB          |
+| t-SNE + Hierarchical        | 0.60    | 0.42                 | 12.80           | 103.62 GB          |
 
 ---
 
